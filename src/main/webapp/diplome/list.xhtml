@@ -1,10 +1,17 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3c.org/1999/xhtml"	
 xmlns:h="http://java.sun.com/jsf/html"	
-xmlns:p="http://primefaces.org/ui">
+xmlns:p="http://primefaces.org/ui" xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <h:head>
 </h:head>	
 <h:body>
+    <ui:composition template="../resources/commonLayout.xhtml">
+        <ui:define name="content">
+            <div class="col-lg-8 col-lg-offset-1">
+                <div class="row">
+                    <h2>Liste des diplomes</h2>
+                </div>
+                <div class="row">
     <h:form>
         <p:commandLink value="Nouveau" action="#{diplomeController.showCreate}" />
         <p:spacer/>
@@ -21,5 +28,9 @@ xmlns:p="http://primefaces.org/ui">
         
         </p:dataTable>
     </h:form>  
+                    </div>
+ </div>
+        </ui:define>
+    </ui:composition>
 </h:body>
 </html>

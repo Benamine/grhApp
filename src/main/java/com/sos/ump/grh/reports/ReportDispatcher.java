@@ -17,6 +17,7 @@ public class ReportDispatcher extends BasicXDocReportDispatcher<IXDocReportWEBCo
 
   public ReportDispatcher() {
     register(ReportController.REPORT_ID, new ReportController());
+    register(ReportMissionController.REPORT_ID, new ReportMissionController());
     // register another controller....to manage another report
   }
 }

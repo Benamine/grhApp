@@ -1,19 +1,36 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3c.org/1999/xhtml"	
 xmlns:h="http://java.sun.com/jsf/html"	
-xmlns:p="http://primefaces.org/ui">
+xmlns:p="http://primefaces.org/ui" xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <h:head>
 </h:head>	
 <h:body>
-        <h:form>
-        <p:panelGrid columns="5">
+    <ui:composition template="../resources/commonLayout.xhtml">
+        <ui:define name="content">
+            <div class="col-lg-8 col-lg-offset-1">
+                <div class="row">
+                    <h2>Liste du personnel</h2>
+                    <p:panelGrid columns="5">
             <p:commandLink target="new" value="Attestation" action="#{personneController.showAttestation}"  />
             <p:commandLink value="Nouvelle Qualification" action="#{personneController.showAddQualification}"  />
             <p:commandLink value="Nouvelle Affectation" action="#{personneController.showAddAffectation}"  />
             <p:commandLink value="Nouvelle Situation" action="#{personneController.showAddSituation}"  />
             <p:commandLink value="Demander Ordre de Mission" action="#{personneController.showAddMission}"  />
         </p:panelGrid>
-        <p:panelGrid columns="2">
+                </div>
+                
+                <div class="row">
+                     <h:form>
+          
+                <!--<h:panelGrid columns="2" cellpadding="10">-->
+       
+              
+        <p:panelGrid  columns="2">
+             
+                   
+            <p:outputLabel value="photo :"/>
+            <p:graphicImage  height="120" width="120" value="#{personneController.byteToImage(personneController.courrant.photo)}" />
+               
             <p:outputLabel value="CIN :" />
             <p:outputLabel id="cin" value="#{personneController.courrant.cin}" />
             
@@ -55,14 +72,18 @@ xmlns:p="http://primefaces.org/ui">
             
             <p:outputLabel value="Adresse :" />
             <p:outputLabel id="adresse" value="#{personneController.courrant.adresse}" />
-            
-            <p:outputLabel value="photo :"/>
-            <p:graphicImage height="120" width="120" value="#{personneController.byteToImage(personneController.courrant.photo)}" />
+           
+              
             
         </p:panelGrid>   
-        
+                
     </h:form>
-    
+                </div>
+                
+                <div class="row">
+                    
+                    <p:tabView style="background-color: #000">
+                  <p:tab title="Qualification">
     <p:panelGrid columns="2">
         <p:dataTable value="#{personneController.courrant.qualificationList}" var="diplomes">
         <p:column headerText="Intitule du diplome">
@@ -83,7 +104,9 @@ xmlns:p="http://primefaces.org/ui">
         
     </p:dataTable>
     </p:panelGrid>
-    
+    </p:tab>
+                        
+    <p:tab title="Affectation">                   
     <p:panelGrid columns="2">
         <p:dataTable value="#{personneController.courrant.affectationList}" var="affectation">
         <p:column headerText="Service d'affectation">
@@ -100,6 +123,9 @@ xmlns:p="http://primefaces.org/ui">
         
     </p:dataTable>
     </p:panelGrid>
+        </p:tab>
+                        
+    <p:tab title="Situation">
     <p:panelGrid columns="2">
         <p:dataTable value="#{personneController.courrant.situationList}" var="situation">
         <p:column headerText="Date d'effet">
@@ -123,5 +149,42 @@ xmlns:p="http://primefaces.org/ui">
         </p:column>
     </p:dataTable>
     </p:panelGrid>
+        </p:tab>
+                        
+             <p:tab title="Ordre de Mission">
+    <p:panelGrid columns="2">
+        <p:dataTable value="#{personneController.courrant.missionList}" var="mission">
+        <p:column headerText="Destination">
+            <p:outputLabel value="#{mission.destination}" />
+        </p:column>
+        
+        <p:column headerText="Ville">
+            <p:outputLabel value="#{mission.ville}" />
+        </p:column>
+        
+        <p:column headerText="Pays">
+            <p:outputLabel value="#{mission.pays}" />
+        </p:column>
+        
+        <p:column headerText="Date de début">
+            <p:outputLabel value="#{mission.dateDebut}" />
+        </p:column>
+            
+        <p:column headerText="Date de fin">
+            <p:outputLabel value="#{mission.dateFin}" />
+        </p:column>
+         <p:column headerText="Voir Mission"> 
+                         <p:outputLabel value="#{personneController.getDispo()}" />
+             
+         </p:column>
+                        
+    </p:dataTable>
+    </p:panelGrid>
+        </p:tab>           
+      </p:tabView>
+     </div>
+ </div>
+        </ui:define>
+    </ui:composition>
 </h:body>
 </html>

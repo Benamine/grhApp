@@ -17,7 +17,7 @@ import javax.persistence.PersistenceContext;
  */
 @Stateless
 public class AffectationFacade extends AbstractFacade<Affectation> {
-    @PersistenceContext(unitName = "com.sos.ump_grhApp_war_1.0-SNAPSHOTPU")
+    @PersistenceContext(unitName = "grhPU")
     private EntityManager em;
 
     @Override

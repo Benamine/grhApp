@@ -73,6 +73,9 @@ public class DiplomeController implements Serializable{
     }
 
     public Diplome getNouveau() {
+         if(nouveau == null){
+           nouveau = new Diplome();
+        }
         return nouveau;
     }
 

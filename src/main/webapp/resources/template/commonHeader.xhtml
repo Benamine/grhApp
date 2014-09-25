@@ -2,7 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml"   
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <body>
 	    <ui:composition>
                 <header id="myHeader">
@@ -18,7 +20,36 @@
                             <h:graphicImage name="images/umpLogo.jpg" />
                         </div>
                     </div>
- </header>
+</header> 
+                    <h:form>
+                     <p:menubar style="background: #febc53 " >
+                     <p:menuitem value="Accueil" url="/index.xhtml" style="padding-right: 24px" icon="ui-icon-home"></p:menuitem>
+                        <p:submenu label="Personne" style="padding-right: 24px" icon="ui-icon-person">
+                            <p:menuitem value="Liste des personnels" action="#{personneController.showList}"/>
+                            <p:menuitem value="Ajouter un personnel" action="#{personneController.showCreate}"></p:menuitem>
+                        </p:submenu>
+                        <p:submenu label="Diplome" style="padding-right: 24px" icon="ui-icon-folder-collapsed">
+                            <p:menuitem value="Liste des diplomes" action="#{diplomeController.showList}"/>
+                            <p:menuitem value="Ajouter un diplome" action="#{diplomeController.showCreate}"></p:menuitem>
+                        </p:submenu>
+                        <p:submenu label="Cadre" style="padding-right: 24px" icon="ui-icon-document">
+                            <p:menuitem value="Liste les cadres" action="#{cadreController.showList}"/>
+                            <p:menuitem value="Ajouter un cadre" action="#{cadreController.showCreate}"></p:menuitem>
+                        </p:submenu>
+                        <p:submenu label="Service" style="padding-right: 24px" icon="ui-icon-suitcase">
+                           <p:menuitem value="Liste les services" action="#{serviceController.showList}"/>
+                           <p:menuitem value="Ajouter un service" action="#{serviceController.showCreate}"></p:menuitem>
+                        </p:submenu>
+                        
+                     <p:menuitem value="Help" style="padding-right: 24px" action="#{personneController.showAddMissionAdmin()}" icon="ui-icon-help" />
+                          
+                        <f:facet name="options">
+                            <p:inputText style="margin-right:10px" placeholder="Search"/>
+                            <p:commandButton type="button" value="Logout" icon="ui-icon-extlink" />
+                        </f:facet>
+                    </p:menubar>
+                </h:form>
+ 
 	    </ui:composition>
     </body>
 </html>

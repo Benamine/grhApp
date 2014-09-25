@@ -13,6 +13,7 @@ xmlns:ui="http://java.sun.com/jsf/facelets">
                     <h2>Liste du personnel</h2>
                 </div>
                 <div class="row">
+                    <h:form>    
                     <p:panelGrid columns="3">
                         <p:outputLabel value="Destination" />
                         <p:inputTextarea id="destination" value="#{personneController.newMission.destination}" required="true" />
@@ -39,7 +40,8 @@ xmlns:ui="http://java.sun.com/jsf/facelets">
                         <p:message for="details" /> 
                         <h:commandButton value="Enregistrer la demande" action="#{personneController.doRequestMission}" />
                     </p:panelGrid>
-        </div>
+        </h:form>
+                </div>
  </div>
         </ui:define>
     </ui:composition>

@@ -18,7 +18,7 @@ import javax.persistence.PersistenceContext;
  */
 @Stateless
 public class CompteFacade extends AbstractFacade<Compte> {
-    @PersistenceContext(unitName = "com.sos.ump_grhApp_war_1.0-SNAPSHOTPU")
+    @PersistenceContext(unitName = "grhPU")
     private EntityManager em;
 
     @Override

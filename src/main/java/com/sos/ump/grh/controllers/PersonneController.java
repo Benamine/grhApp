@@ -54,7 +54,7 @@ public class PersonneController implements Serializable {
     @Inject
     private PersonneFacade personneService;
     private Personne courrant;
-    private Personne nouveau;
+    private Personne nouveau ;
     private List<Personne> personnes;
     
     @Inject
@@ -81,6 +81,11 @@ public class PersonneController implements Serializable {
     private AutorisationFacade autoisationService;
     private Autorisation newAutorisation;
     
+    String dispo="non disponible";
+
+    public String getDispo() {
+        return dispo;
+    }
     /**
      * Creates a new instance of PersonneController
      */
@@ -130,19 +135,45 @@ public class PersonneController implements Serializable {
         return "/personne/addMission?faces-redirect=true";
     }
 
+    public String showAddMissionAdmin() {
+        return "/personne/edit?faces-redirect=true";
+    }
+    
     public void showAttestation() throws IOException, FacesException {
         
-        String diplome = courrant.getQualificationList().get(1).getMension();
+        String diplome = courrant.getQualificationList().get(0).getMension();
+        //grhApp
         
         System.out.println(courrant.getNom());
         FacesContext.getCurrentInstance().getExternalContext()
-                .redirect("/grhApp/reportDispatcher/?reportId=attestation.odt&nom=" + courrant.getNom() 
+                .redirect("/umpGRH//reportDispatcher/?reportId=attestation.odt&nom=" + courrant.getNom() 
                         + "&prenom1=" + courrant.getPrenom1() 
                         + "&som=" + courrant.getSom() 
-                        + "&diplome=" + diplome
+                       +"&diplome="+diplome
                         + "");
     }
 
+    
+    public void showAttestationMission(Long idMission) throws IOException, FacesException {
+        
+        //String diplome = courrant.getQualificationList().get(0).getMension();
+        //grhApp
+        dispo="disponible";
+        System.out.println(courrant.getNom());
+        for(int i=0;i<=courrant.getMissionList().size();i++){
+         
+        
+        if(i==idMission-1){
+        FacesContext.getCurrentInstance().getExternalContext()
+                .redirect("/umpGRH//reportDispatcher/?reportId=attestationMission.odt&dest=" + courrant.getMissionList().get(i).getDestination()
+                        + "&vil=" + courrant.getMissionList().get(i).getVille()
+                        + "&pays=" + courrant.getMissionList().get(i).getPays()
+                      
+                        + ""); 
+        }
+        }
+    }
+        
     public List<Personne> getAll() {
         personneService.clearCache();
         return personneService.findAll();
@@ -159,7 +190,7 @@ public class PersonneController implements Serializable {
         compteUtilisateur.setLogin(login);
         compteUtilisateur.setPassword(password);
         
-        compteService.create(compteUtilisateur);
+        //compteService.create(compteUtilisateur);
         
                 
         personneService.create(nouveau);
@@ -239,6 +270,7 @@ public class PersonneController implements Serializable {
     }
     
     public String doRequestMission(){
+        System.out.println("mmamjdaôjd");
         logger.log(Level.INFO, "Debut de la procedure de demande d ordre de mission !!");
         if (courrant != null) {
             newMission.setPersonne(courrant);
@@ -267,7 +299,12 @@ public class PersonneController implements Serializable {
         this.courrant = courrant;
     }
 
+    //code 
     public Personne getNouveau() {
+        
+        if(nouveau == null){
+           nouveau = new Personne();
+        }
         return nouveau;
     }
 

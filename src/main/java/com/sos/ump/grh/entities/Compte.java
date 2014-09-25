@@ -32,15 +32,15 @@ import javax.xml.bind.annotation.XmlRootElement;
  *
  * @author abdel
  */
-@Entity
-@Table(name = "t_cadre")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Compte.findAll", query = "SELECT c FROM Compte c"),
-    @NamedQuery(name = "Compte.findById", query = "SELECT c FROM Compte c WHERE c.id = :id"),
-    @NamedQuery(name = "Compte.findByLogin", query = "SELECT c FROM Compte c WHERE c.login = :login"),
-    @NamedQuery(name = "Compte.findBySom", query = "SELECT c FROM Compte c WHERE c.som = :som"),
-    @NamedQuery(name = "Compte.findByLoginAndPassword", query = "SELECT c FROM Compte c WHERE c.login = :login AND c.password = :password")})
+//@Entity
+//@Table(name = "t_cadre")
+//@XmlRootElement
+//@NamedQueries({
+//    @NamedQuery(name = "Compte.findAll", query = "SELECT c FROM Compte c"),
+//    @NamedQuery(name = "Compte.findById", query = "SELECT c FROM Compte c WHERE c.id = :id"),
+//    @NamedQuery(name = "Compte.findByLogin", query = "SELECT c FROM Compte c WHERE c.login = :login"),
+//    @NamedQuery(name = "Compte.findBySom", query = "SELECT c FROM Compte c WHERE c.som = :som"),
+//    @NamedQuery(name = "Compte.findByLoginAndPassword", query = "SELECT c FROM Compte c WHERE c.login = :login AND c.password = :password")})
 public class Compte implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

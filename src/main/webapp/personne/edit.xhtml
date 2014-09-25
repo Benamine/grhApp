@@ -1,10 +1,47 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3c.org/1999/xhtml"	
 xmlns:h="http://java.sun.com/jsf/html"	
-xmlns:p="http://primefaces.org/ui">
+xmlns:p="http://primefaces.org/ui" xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <h:head>
 </h:head>	
 <h:body>
+    <ui:composition template="../resources/commonLayout.xhtml">
+        <ui:define name="content">
+            <div class="col-lg-8 col-lg-offset-1">
+                        
+             <p:tab title="Ordre de Mission">
+    <p:panelGrid columns="2">
+        <p:dataTable value="#{personneController.courrant.missionList}" var="mission">
+        <p:column headerText="Destination">
+            <p:outputLabel value="#{mission.destination}" />
+        </p:column>
         
+        <p:column headerText="Ville">
+            <p:outputLabel value="#{mission.ville}" />
+        </p:column>
+        
+        <p:column headerText="Pays">
+            <p:outputLabel value="#{mission.pays}" />
+        </p:column>
+        
+        <p:column headerText="Date de début">
+            <p:outputLabel value="#{mission.dateDebut}" />
+        </p:column>
+            
+        <p:column headerText="Date de fin">
+            <p:outputLabel value="#{mission.dateFin}" />
+        </p:column>
+         <p:column headerText="Voir Mission">                
+             <p:commandLink target="new" value="Attestation" action="#{personneController.showAttestationMission(mission.id)}"  />
+         </p:column>
+                        
+    </p:dataTable>
+    </p:panelGrid>
+        </p:tab>           
+     
+     </div>
+
+        </ui:define>
+    </ui:composition>
 </h:body>
 </html>
